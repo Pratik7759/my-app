@@ -1,12 +1,13 @@
 "use client";
 import Search from "@/Search";
+import TodoList from "@/app/TodoList/TodoList";
 import { useEffect, useState } from "react";
 
 export default function Home() {
   const data = ["ram", "Mohan", "RajEsh", "apple"];
   const [recipes, setRecipes] = useState([]);
 
-  const newData = async () => {
+  const fetchedData = async () => {
     try {
       let response = await fetch("https://dummyjson.com/recipes");
       let data = await response.json();
@@ -18,16 +19,18 @@ export default function Home() {
   };
 
   useEffect(() => {
-    newData();
+    fetchedData();
   }, [recipes]);
 
   return (
     <div className="container mx-auto p-8">
-      <Search data={data} />
+      {/* <Search data={data} /> */}
 
-      {recipes.map((item, index) => (
+      {/* {recipes.map((item, index) => (
         <div key={index}>{item.name}</div>
-      ))}
+      ))} */}
+
+      <TodoList />
     </div>
   );
 }
